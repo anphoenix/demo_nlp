@@ -31,3 +31,22 @@ Usage:
 			 	precision 	recall 		F1-Score
 		GENE:	 0.537530	0.345794	0.420853
 
+2. HMM Tagger used as Chinese Tokenizer
+
+Usage:
+
+0. generate training data and test data [Need Refine to Random Selection]
+
+		python msr_data_cleaner.py training msr_training.utf8 data/training 8000
+		python msr_data_cleaner.py test msr_training.utf8 data/test 8000
+		#test data will generate two file: test.key is the un-tagged file, and test.val is the tagged file
+
+1. generate HMM model using ../hmm tool
+
+		python ../hmm/count_freqs.py data/training > model/model.counts
+
+2. perform the tokenize on test data
+
+		python ../hmm/emission_parameter.py model/model.counts data/test.key > data/test.out
+
+3. compare the machine tagging tokenization result with test result
