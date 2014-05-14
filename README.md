@@ -1,7 +1,7 @@
 demo_nlp
 ========
 
-1. Tagging Demo using HMM (in python) in ./hmm 
+1.Tagging Demo using HMM (in python) in ./hmm 
 
 	The task consists of identifying gene names within biological text
 	In this dataset there is one type of entity:gene (GENE). The dataset is adapted from the BioCreAtIvE II shared task (http://biocreative.sourceforge.net/biocreative_2.html).
@@ -31,7 +31,7 @@ Usage:
 			 	precision 	recall 		F1-Score
 		GENE:	 0.537530	0.345794	0.420853
 
-2. HMM Tagger used as Chinese Tokenizer
+2.HMM Tagger used as Chinese Tokenizer
 
 Usage:
 
