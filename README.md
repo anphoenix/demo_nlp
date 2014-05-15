@@ -37,13 +37,14 @@ Usage:
 
 0. generate training data and test data [Need Refine to Random Selection]
 
-		python msr_data_cleaner.py training msr_training.utf8 data/training 8000
-		python msr_data_cleaner.py test msr_training.utf8 data/test 8000
+		python msr_data_cleaner.py training icwb2-data/training/msr_training.utf8 data/training 86924
+		python ../hmm/prepare_training_data.py data/training data/training.refine
+		python msr_data_cleaner.py test icwb2-data/gold/msr_test_gold.utf8 data/test 3985
 		#test data will generate two file: test.key is the un-tagged file, and test.val is the tagged file
 
 1. generate HMM model using ../hmm tool
 
-		python ../hmm/count_freqs.py data/training > model/model.counts
+		python ../hmm/count_freqs.py data/training.refine > model/model.counts
 
 2. perform the tokenize on test data
 

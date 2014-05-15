@@ -1,8 +1,5 @@
 #! /usr/bin/python
 
-__author__="Daniel Bauer <bauer@cs.columbia.edu>"
-__date__ ="$Sep 29, 2011"
-
 import sys
 
 
@@ -121,7 +118,7 @@ class Evaluator(object):
 
             # Split off the I and B tags
             gs_type = gs_tag==None and "O" or gs_tag.split("-")[-1]
-            pred_type = pred_tag==None and "O" or pred_tag.split("-")[-1]                        
+            pred_type = pred_tag==None and "O" or pred_tag.split("-")[-1]
 
             # Check if a named entity ends here in either stream.
             # This is the case if we are currently in an entity and either

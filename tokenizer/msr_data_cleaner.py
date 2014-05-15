@@ -4,12 +4,16 @@ __author__ = 'stefanie'
 import sys
 
 def generate_training(input, output, num):
-    l = input.readline()
     count = 0
-    while l and count < num:
+    for l in input.readlines():
+        if count > num:
+            break
+        line = l.strip()
+        if not line:
+            print count
+            continue
         count += 1
         #“  这  首先  是  个  民族  问题  ，  民族  的  感情  问题  。
-        line = l.strip()
         fields = line.split("  ")
         for field in fields:
             words = [field[i:i + 3] for i in range(len(field)) if i % 3 == 0]
@@ -19,25 +23,21 @@ def generate_training(input, output, num):
                 output.write(word + " " + "B" + "\n")
             output.write(words[-1] + " " + "I" + "\n")
         output.write("\n")
-        l = input.readline()
 
 def generate_test(input, output_key, output_val, num):
     l = input.readline()
     count = 0
     print num
     for l in input.readlines():
-        if not l:
+        line = l.strip()
+        if not line:
             break
         count += 1
         #“  这  首先  是  个  民族  问题  ，  民族  的  感情  问题  。
         #print count
-        if count < num:
-            continue
-        if count > num + num/2:
+        if count > num:
             break
-        #print count
-        #print l
-        line = l.strip()
+
         fields = line.split("  ")
         for field in fields:
             words = [field[i:i + 3] for i in range(len(field)) if i % 3 == 0]
