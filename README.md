@@ -35,7 +35,7 @@ Usage:
 
 Usage:
 
-0. generate training data and test data [Need Refine to Random Selection]
+0. generate training data and test data: following comments is using icwb dataset, available at http://www.sighan.org/bakeoff2005/
 
 		python msr_data_cleaner.py training icwb2-data/training/msr_training.utf8 data/training 86924
 		python ../hmm/prepare_training_data.py data/training data/training.refine
