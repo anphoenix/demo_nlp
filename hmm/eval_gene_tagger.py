@@ -1,5 +1,8 @@
 #! /usr/bin/python
 
+__author__="Daniel Bauer <bauer@cs.columbia.edu>"
+__date__ ="$Sep 29, 2011"
+
 import sys
 
 
