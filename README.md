@@ -11,15 +11,15 @@ Usage:
 0. clean the training data with smooth method	
 
 		mkdir demo
-		python prepare_training_data.py data/gene.train > demo/gene.train.refine
+		python data_cleaner.py data/gene.train > demo/gene.train.refine
 
 1. create HMM model (language model and language/tag transit probability model)
 
-		python count_freqs.py demo/gene.train.refine > demo/gene.counts
+		python hmm_trainer.py demo/gene.train.refine > demo/gene.counts
 
 2. Run Viterbi to tagging the test data
 
-		python emission_parameter.py demo/gene.counts data/gene.dev > demo/gene.value
+		python hmm_scorer.py demo/gene.counts data/gene.dev > demo/gene.value
 
 3. evaluate the tagging result
 	
@@ -36,18 +36,29 @@ Usage:
 Usage:
 
 0. generate training data and test data: following comments is using icwb dataset, available at http://www.sighan.org/bakeoff2005/
+   and put the data in icwb2-data folder
 
-		python msr_data_cleaner.py training icwb2-data/training/msr_training.utf8 data/training 86924
-		python ../hmm/prepare_training_data.py data/training > data/training.refine
-		python msr_data_cleaner.py test icwb2-data/gold/msr_test_gold.utf8 data/test 3985
+		python data_cleaner_icwb.py training icwb2-data/training/msr_training.utf8 data/training 86924
+		python data_cleaner_icwb.py test icwb2-data/gold/msr_test_gold.utf8 data/test 3985
 		#test data will generate two file: test.key is the un-tagged file, and test.val is the tagged file
 
 1. generate HMM model using ../hmm tool
 
-		python ../hmm/count_freqs.py data/training.refine > model/model.counts
+		python ../hmm/hmm_trainer.py data/training > model/model.counts
 
 2. perform the tokenize on test data
 
-		python ../hmm/emission_parameter.py model/model.counts data/test.key > data/test.out
+		python ../hmm/hmm_scorer.py model/model.counts data/test.key > data/test.out
 
-3. compare the machine tagging tokenization result with test result
+3. generate icwb format result data
+
+        python result_formatter.py data/test.out > data/formatted_test.out
+
+4. compare the machine tagging tokenization result with test result
+
+Previous implementation only use two tags: B and I to format the training data. To enhance we use four tag to format the training data:
+	S is a simple charater word, for long word, B is tag for the beginning, M is tag for middle, and E is tag for the end.
+		
+		python data_cleaner_icwb.py training icwb2-data/training/msr_training.utf8 data/training 86924 4
+		python data_cleaner_icwb.py test icwb2-data/gold/msr_test_gold.utf8 data/test 3985 4
+	

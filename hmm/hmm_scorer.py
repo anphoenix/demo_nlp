@@ -1,9 +1,9 @@
 #! /usr/bin/python
-
+# -*- coding: UTF-8 -*-
 __author__ = "Stefanie Zhao <zhaochenting@gmail.com>"
 __date__ = "$Mar 11, 2013"
 
-from count_freqs import *
+from hmm_trainer import *
 import re
 
 def is_rare_word(counter, word, tags):
@@ -112,7 +112,7 @@ def viterbi(counter, input, output):
 			
 		output.write("\n")
 	
-def test_viterbi():
+def run_viterbi():
 	counter = Hmm(3)
 	input = file(sys.argv[1],"r")
 	counter.read_counts(input)
@@ -121,4 +121,4 @@ def test_viterbi():
 	viterbi(counter, test_file, sys.stdout)
 
 if __name__ == "__main__":
-	test_viterbi()
+	run_viterbi()

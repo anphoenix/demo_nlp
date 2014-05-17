@@ -1,6 +1,6 @@
 __author__ = 'stefanie'
 
-from count_freqs import *
+from hmm_trainer import *
 import re
 
 def calculate_counts(input):

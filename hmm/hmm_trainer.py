@@ -1,13 +1,9 @@
 #! /usr/bin/python
-
+# -*- coding: UTF-8 -*-
 from __future__ import division
-
-__date__ ="$Sep 12, 2011"
 
 import sys
 from collections import defaultdict
-import math
-
 
 """
 Count n-gram frequencies in a data file and write counts to
@@ -183,18 +179,18 @@ class Hmm(object):
 
 def usage():
     print """
-    python count_freqs.py [input_file] > [output_file]
-        Read in a gene tagged training input file and produce counts.
+    python hmm_trainer.py [input_file] > [output_file]
+        Read in a tagged training input file and create a HMM model.
     """
 
 if __name__ == "__main__":
 
-    if len(sys.argv)!=2: # Expect exactly two argument: the training data file
+    if len(sys.argv) != 2: # Expect exactly two argument: the training data file
         usage()
         sys.exit(2)
         
     try:
-        input = file(sys.argv[1],"r")
+        input = file(sys.argv[1], "r")
     except IOError:
         #sys.stderr.write("ERROR: Cannot read inputfile %s.\n" % arg)
         sys.exit(1)
